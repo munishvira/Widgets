@@ -1,79 +1,186 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 📌 Daily Activities Widget & Progress Widget Documentation
 
-# Getting Started
+## 📖 Overview
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+This repository contains two React Native widgets:
 
-## Step 1: Start the Metro Server
+1. **Daily Activities Widget** - Displays daily self-improvement activities categorized by time of day.
+2. **Progress Widget** - Shows user progress in different areas with visual indicators.
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+---
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## 🏆 1. Daily Activities Widget
 
-```bash
-# using npm
-npm start
+### 🎯 **Description**
 
-# OR using Yarn
-yarn start
+The Daily Activities Widget provides users with  daily exercises to enhance their mental health and productivity.
+
+### ⚙️ **Props**
+
+| Prop Name    | Type    | Description                                |
+| ------------ | ------- | ------------------------------------------ |
+| `activities` | `Array` | List of activities grouped by time of day. |
+
+### 🛠 **Test Cases**
+
+Test cases for `Daily.js` are written using `@testing-library/react-native`.
+
+#### ✅ **Tests Covered**
+
+- Renders greeting message correctly.
+- Displays the "Set reminder" button.
+- Shows progress bar with correct progress.
+- Renders Morning, Afternoon, and Evening sections.
+- Displays correct activity titles and descriptions.
+- Shows footer quote.
+
+#### 🧪  Test Cases(Located in **\`Daily.test.js\`**)
+
+```jsx
+describe('ProgressWidget Component', () => {
+
+  //Test for checking if component renders correctly 
+  it('renders correctly', () => {
+    const { getByText } = render(<ProgressWidget scores={mockData} />);
+    expect(getByText('Your areas for growth are:')).toBeTruthy();
+  });
+
+  //Displays correct labels and values
+  it('displays correct labels and values', () => {
+    const { getByText } = render(<ProgressWidget scores={mockData} />);
+    expect(getByText('Mental Wellbeing')).toBeTruthy();
+    expect(getByText('41')).toBeTruthy();
+    expect(getByText('Work-Life Balance')).toBeTruthy();
+    expect(getByText('47')).toBeTruthy();
+    expect(getByText('Self Efficacy')).toBeTruthy();
+    expect(getByText('50')).toBeTruthy();
+  });
+
+  //Shows correct operator (+ or -)
+  it('displays correct operator and subValue', () => {
+    const { getByText } = render(<ProgressWidget scores={mockData} />);
+    expect(getByText('(-9)')).toBeTruthy();
+    expect(getByText('(+7)')).toBeTruthy();
+    expect(getByText('(-30)')).toBeTruthy();
+  });
+
+  //Handles missing data
+  it('handles missing data gracefully', () => {
+    const { getByText } = render(<ProgressWidget scores={[]} />);
+    expect(getByText('No data available')).toBeTruthy();
+  });
+});
 ```
 
-## Step 2: Start your Application
+---
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+## 📊 2. Progress Widget
 
-### For Android
+### 🎯 **Description**
 
-```bash
-# using npm
+The Progress Widget visually represents the user's personal growth in various categories such as **Mental Wellbeing, Work-Life Balance, and Self-Efficacy**.
+
+### ⚙️ **Props**
+
+| Prop Name | Type    | Description                                                                    |
+| --------- | ------- | ------------------------------------------------------------------------------ |
+| `scores`  | `Array` | List of scores, each containing a label, value, operator (+/-), and sub-value. |
+
+### 🛠 **Test Cases**
+
+Test cases for `ProgressWidget.js` ensure the correct rendering of scores and labels.
+
+#### ✅ **Tests Covered**
+
+- Renders correctly.
+- Displays correct labels and values.
+- Shows the correct operator (+/-).
+- Handles missing data gracefully.
+
+#### 🧪  Test Cases (Located in ****\`ProgressWidget.test.js\`****)
+
+```jsx
+// Mock react-native-paper's ProgressBar
+jest.mock('react-native-paper', () => ({
+  ProgressBar: jest.fn(() => null),
+}));
+
+describe('Daily Activities Widget', () => {
+  
+  //Renders the greeting message (Good Morning) correctly
+  test('renders greeting message correctly', () => {
+    const { getByText } = render(<Daily />);
+    expect(getByText('Good morning')).toBeTruthy();
+  });
+
+  //Displays the reminder button.
+  test('renders reminder button', () => {
+    const { getByText, getByTestId } = render(<Daily />);
+    expect(getByText('Set reminder')).toBeTruthy();
+
+    const button = getByTestId('reminder-button');
+    expect(button).toBeTruthy();
+  });
+
+  //Shows progress bar with correct progress
+  test('renders progress bar with correct progress', () => {
+    render(<Daily />);
+    expect(ProgressBar).toHaveBeenCalledWith(
+      expect.objectContaining({ progress: 0.1 }),
+      {}
+    );
+  });
+
+  //Renders all three activity sections (Morning, Afternoon, Evening).
+  test('renders all activity sections: Morning, Afternoon, and Evening', () => {
+    const { getByText } = render(<Daily />);
+    
+    expect(getByText('Morning')).toBeTruthy();
+    expect(getByText('Afternoon')).toBeTruthy();
+    expect(getByText('Evening')).toBeTruthy();
+  });
+
+  //Displays activity titles and descriptions.
+  test('renders activities with correct titles and descriptions', () => {
+    const { getByText } = render(<Daily />);
+    
+    expect(getByText('Dealing with Rejection')).toBeTruthy();
+    expect(getByText('Learn to heal with and cope with being rejected')).toBeTruthy();
+
+    expect(getByText('How to Fight Fairly')).toBeTruthy();
+    expect(getByText('Learn how to have peaceful, constructive disagreements')).toBeTruthy();
+    
+    expect(getByText('Exploring Met and Unmet')).toBeTruthy();
+    expect(getByText('Learn how to meet your emotional needs')).toBeTruthy();
+
+    expect(getByText('Listening Empathetically')).toBeTruthy();
+    expect(getByText('Learn the foundational skills of listening to others with empathy')).toBeTruthy();
+  });
+
+  //Verifies the footer quote is displayed.
+  test('renders footer quote', () => {
+    const { getByText } = render(<Daily />);
+    expect(getByText(/I advise all of my clients to develop a consistent daily routine/i)).toBeTruthy();
+  });
+
+});
+```
+
+---
+
+## 🏗️ Setup & Installation
+
+```sh
+git clone https://github.com/your-repo/widgets.git
+cd widgets
+npm install
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### For iOS
+### 🚀 Running Tests
 
-```bash
-# using npm
-npm run ios
+To execute the test cases, run:
 
-# OR using Yarn
-yarn ios
+```sh
+npm test
 ```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
