@@ -9,6 +9,20 @@ This repository contains two React Native widgets:
 
 ---
 
+## Screenshots
+
+Daily Activities Widget
+
+![Screenshot_20250222_200917_assignment](https://github.com/user-attachments/assets/f1e3b159-e5f4-4834-9186-7b3adaaef3dc)
+
+
+
+Progress Widget
+
+![Screenshot_20250222_200907_assignment](https://github.com/user-attachments/assets/670e6054-946b-4a62-b290-38325fc4a371)
+
+---
+
 ## 🏆 1. Daily Activities Widget
 
 ### 🎯 **Description**
