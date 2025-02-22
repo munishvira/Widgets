@@ -10,7 +10,7 @@ const mockData = [
 
 describe('ProgressWidget Component', () => {
 
-  //test for checking if component renders correctly 
+  //Test for checking if component renders correctly 
   it('renders correctly', () => {
     const { getByText } = render(<ProgressWidget scores={mockData} />);
     expect(getByText('Your areas for growth are:')).toBeTruthy();

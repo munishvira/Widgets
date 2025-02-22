@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, FlatList }
 import React from 'react'
 import { Icon } from '@rneui/themed';
 import {SunIcon,MoonIcon,TeaCupIcon} from '../svg/dailyScreen';
-import TaskWidget from '../component/taskWidget';
+import TaskWidget from '../component/activityWidget';
 import { ProgressBar } from 'react-native-paper';
 
 const activities = [
