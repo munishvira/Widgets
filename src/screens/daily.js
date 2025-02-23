@@ -41,7 +41,7 @@ const Daily = () => {
       <FlatList
         data={activities}
         keyExtractor={(item) => item.time}
-        showsVerticalScrollIndicator={true}
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={(
           <>
             <View style={styles.initialContainer}>
