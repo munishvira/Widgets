@@ -13,7 +13,7 @@ This repository contains two React Native widgets:
 
 Daily Activities Widget
 
-![Screenshot_20250223_133248_assignment](https://github.com/user-attachments/assets/321cd034-24d8-4a09-a613-0f4c7ed0593a)
+![Screenshot_20250223_133811_assignment](https://github.com/user-attachments/assets/dbaead12-d830-430c-9daa-a5fdc6ac952e)
 
 Progress Widget
 
