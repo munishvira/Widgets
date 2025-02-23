@@ -13,9 +13,7 @@ This repository contains two React Native widgets:
 
 Daily Activities Widget
 
-![Screenshot_20250222_200917_assignment](https://github.com/user-attachments/assets/f1e3b159-e5f4-4834-9186-7b3adaaef3dc)
-
-
+![Screenshot_20250223_133248_assignment](https://github.com/user-attachments/assets/321cd034-24d8-4a09-a613-0f4c7ed0593a)
 
 Progress Widget
 
@@ -35,10 +33,6 @@ The Daily Activities Widget provides users with  daily exercises to enhance thei
 | ------------ | ------- | ------------------------------------------ |
 | `activities` | `Array` | List of activities grouped by time of day. |
 
-### 🛠 **Test Cases**
-
-Test cases for `Daily.js` are written using `@testing-library/react-native`.
-
 #### ✅ **Tests Covered**
 
 - Renders greeting message correctly.
@@ -48,7 +42,7 @@ Test cases for `Daily.js` are written using `@testing-library/react-native`.
 - Displays correct activity titles and descriptions.
 - Shows footer quote.
 
-#### 🧪  Test Cases(Located in **\`Daily.test.js\`**)
+### 🛠 Test Cases (Located in **\`Daily.test.js\`**)
 
 ```jsx
 // Mock react-native-paper's ProgressBar
@@ -130,11 +124,7 @@ The Progress Widget visually represents the user's personal growth in various ca
 
 | Prop Name | Type    | Description                                                                    |
 | --------- | ------- | ------------------------------------------------------------------------------ |
-| `scores`  | `Array` | List of scores, each containing a label, value, operator (+/-), and sub-value. |
-
-### 🛠 **Test Cases**
-
-Test cases for `ProgressWidget.js` ensure the correct rendering of scores and labels.
+| `scores`  | `Array` | List of scores, each containing a label, value.                                |
 
 #### ✅ **Tests Covered**
 
@@ -143,7 +133,7 @@ Test cases for `ProgressWidget.js` ensure the correct rendering of scores and la
 - Shows the correct operator (+/-).
 - Handles missing data gracefully.
 
-#### 🧪  Test Cases (Located in ****\`ProgressWidget.test.js\`****)
+### 🛠 Test Cases (Located in ****\`ProgressWidget.test.js\`****)
 
 ```jsx
 describe('ProgressWidget Component', () => {
